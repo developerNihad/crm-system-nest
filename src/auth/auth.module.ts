@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { User } from '../entities/User.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import config from '../config/config';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
@@ -12,7 +13,7 @@ import { JwtStrategy } from './jwt.strategy';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: 'JWT_SECRET',
+      secret: config.jwtSecret,
       signOptions: { expiresIn: '1h' },
     }),
   ],

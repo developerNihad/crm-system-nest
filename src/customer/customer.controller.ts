@@ -3,9 +3,11 @@ import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { Customer } from 'src/entities/Customer.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
 @Controller('customers')
+@ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
