@@ -34,7 +34,6 @@ export class AuthService {
       throw new UnauthorizedException('User not found');
     }
 
-    // Ensure the password is set
     if (!user.password) {
       throw new UnauthorizedException('User password is not set');
     }
@@ -45,10 +44,10 @@ export class AuthService {
     }
 
     // Generate the JWT token
-    const payload = { email: user.email, sub: user.id }; // Payload can include user info
-    const accessToken = this.jwtService.sign(payload); // Sign the token with the payload
+    const payload = { email: user.email, sub: user.id };
+    const accessToken = this.jwtService.sign(payload);
 
-    return { accessToken }; // Return the token
+    return { accessToken };
   }
 
 }
